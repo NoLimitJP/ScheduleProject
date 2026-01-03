@@ -11,11 +11,11 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-//TO DO: November 27, 2024, finish code for buttons and text fields to have overall functionality and make sure to specify use-cases
+
 public class CourseDAO {
-    private static final String DB_URL = "jdbc:postgresql://localhost:5432/schedule_app";
-    private static final String USER = "postgres";
-    private static final String PASS = "postgres";
+    private static final String DB_URL = "database url";
+    private static final String USER = "username";
+    private static final String PASS = "password";
 
     public List<String[]> getCourses() {
         String query = "SELECT * FROM courses"; // SQL query
@@ -129,7 +129,7 @@ String query = "INSERT INTO courses (course_name, start_time, end_time, credits)
 
                 int rowsUpdated = pstmt.executeUpdate();
 
-        // Provide feedback on the operation
+        //Console message depends on whether or not the operation was a success
         if (rowsUpdated > 0) {
             System.out.println("Course updated successfully.");
         } else {
@@ -151,7 +151,7 @@ String query = "INSERT INTO courses (course_name, start_time, end_time, credits)
 
                 int rowsUpdated = pstmt.executeUpdate();
 
-        // Provide feedback on the operation
+        //Console message depends on whether or not the operation was a success
         if (rowsUpdated > 0) {
             System.out.println("Course updated successfully.");
         } else {
@@ -162,19 +162,4 @@ String query = "INSERT INTO courses (course_name, start_time, end_time, credits)
             }
         }
         
-    public static void main(String[] args) {
-        CourseDAO dao = new CourseDAO(); //object to test methods
-        dao.getCourses();// testing the getCourses method
-        Course test = new Course("Social Studies",4,"12:00 AM","11:30 PM");// creating a test Course object
-        String testName = test.getName();
-        int testCredits = test.getCredits();
-        LocalTime testStart = test.parseStart(test.getStart());//using the parseStart method written in Course.java file to parse the String to a LocalTime object
-        LocalTime testEnd = test.parseEnd(test.getEnd()); //similar to line 61, but using the parseEnd method
-        dao.insertCourse(testName, testStart, testEnd, testCredits);
-        dao.deleteCourse("Math");
-        dao.getCourses();
-        
 
-
-    }
-}
